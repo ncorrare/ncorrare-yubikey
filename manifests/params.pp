@@ -7,7 +7,7 @@ class yubikey::params {
     $service = ['common-auth']
   }
 
-  $arguments = "debug"
-  $control   = "sufficient"
-  $beforemod = "pam_unix.so"
+  $arguments = ['debug','id=16']
+  $control   = 'sufficient'
+  $beforemod = 'pam_unix.so'
 }
