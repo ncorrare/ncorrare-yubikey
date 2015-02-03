@@ -4,4 +4,5 @@ define yubikey::key ($token) {
     ensure => 'present',
     content => "$name:$token",
   }
+}
 
