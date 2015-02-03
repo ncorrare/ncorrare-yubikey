@@ -58,9 +58,11 @@ For other arguments, or using with the Yubico Radius, please check the documenta
 on which parameters to use on https://developers.yubico.com/yubico-pam/ .
 
 To configure a user, define a new key:
+```puppet
 yubikey::key { 'username' :
   token => 'token'
   }
+ ``` 
 Where token is the Yubikey token ID. So far it only accepts a string and not an array.
 This will create a new file in the user's home directory (~/.yubico/authorized_yubikeys)
 with the authorization mapping.
