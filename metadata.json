@@ -4,14 +4,14 @@
   "author": "ncorrare",
   "summary": "A Puppet Module to install the yubikey PAM module and manage users/keys on a system.",
   "license": "GNU GPL v2.0",
-  "source": "https://github.com/ncorrare/yubikey",
   "project_page": "https://github.com/ncorrare/yubikey",
+  "source": "https://github.com/ncorrare/yubikey",
   "issues_url": "https://github.com/ncorrare/yubikey/issues",
   "dependencies": [
-    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"},
-    {"name":"puppetlabs-apt"},
-    {"name":"stahnma-epel"},
-    {"name":"herculesteam-augeasproviders_pam"},
+    {"name":"puppetlabs/stdlib","version_requirement":">= 1.0.0"},
+    {"name":"puppetlabs/apt","version_requirement":">= 1.0.1"},
+    {"name":"stahnma/epel","version_requirement":">= 1.0.1"},
+    {"name":"herculesteam/augeasproviders_pam","version_requirement":">= 2.0.0"}
   ]
 }
 
