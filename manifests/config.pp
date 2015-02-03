@@ -1,6 +1,5 @@
 #The following class loads PAM. Variables have sane defaults. 
-class yubikey::config ($arguments='id=16 debug', $service,
-$control='sufficient', $before='pam_unix.so') {
+class yubikey::config ($arguments, $service, $control, $beforemod) {
   require ::yubikey::install
   if $::kernel =='Linux' {
     if $::osfamily == 'RedHat' and $::operatingsystem !~ /Fedora|Amazon/ {
@@ -16,7 +15,7 @@ $control='sufficient', $before='pam_unix.so') {
         control   => $yubikey::config::control,
         module    => 'pam_yubico.so',
         arguments => $yubikey::config::arguments,
-        position  => "before module ${before}",
+        position  => "before module ${beforemod}",
         }
       
     } elsif $::osfamily == 'RedHat' and $::operatingsystem =~ /Fedora/ {
@@ -32,7 +31,7 @@ $control='sufficient', $before='pam_unix.so') {
         control   => $yubikey::config::control,
         module    => 'pam_yubico.so',
         arguments => $yubikey::config::arguments,
-        position  => "before module ${before}",
+        position  => "before module ${beforemod}",
         }
  
     } elsif $::osfamily == 'Debian' and $::operatingsystem =~ /Ubuntu/ {
@@ -48,7 +47,7 @@ $control='sufficient', $before='pam_unix.so') {
         control   => $yubikey::config::control,
         module    => 'pam_yubico.so',
         arguments => $yubikey::config::arguments,
-        position  => "before module ${before}",
+        position  => "before module ${beforemod}",
         }
     } else {
       notice ("${::operatingsystem} is not supported")
