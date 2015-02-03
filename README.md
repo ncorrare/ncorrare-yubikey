@@ -75,7 +75,7 @@ in a given path (~/.yubico/authorized_yubikeys) with the authorization mapping.
 
 The ::yubikey::config class accepts the following variables:
 
-* $arguments: Defaults to 'debug'. Please note that augeas fails when using a '=' sign.
+* $arguments: Array. Defaults to ['debug','id=16']. Please note that augeas fails when using a '=' sign.
   Currently troubleshooting why that happens.
 * $service: Array. Defaults to system-auth & password-auth in RedHat systems 
   and common-auth in Ubuntu systems.
