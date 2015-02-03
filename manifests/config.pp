@@ -1,15 +1,19 @@
-class yubikey::config ($arguments='id=16 debug', $service='system-auth', $control='sufficient', $before='pam_unix.so') {
+class yubikey::config ($arguments='id=16 debug', $service, $control='sufficient', $before='pam_unix.so') {
   if $::kernel =='Linux' {
     if $::osfamily == 'RedHat' and $::operatingsystem !~ /Fedora|Amazon/ {
       #Insert Red Hat / Centos PAM Logic
       require ::pam
+      #If we don't specify a service, default to system-auth
+      if !($service) {
+        $service = 'system-auth'
+      }
       pam { 'Insert Yubikey entry on system-auth':
         ensure => present,
-        service => $::yubikey::config::service,
+        service => $yubikey::config::service,
         type => 'auth',
-        control => $::yubikey::config::control,
+        control => $yubikey::config::control,
         module => 'pam_yubico.so',
-        arguments => $::yubikey::config::arguments,
+        arguments => $yubikey::config::arguments,
         position => "before module $before",
         }
       
