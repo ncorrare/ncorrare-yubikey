@@ -1,6 +1,6 @@
 {
   "name": "ncorrare-yubikey",
-  "version": "0.9.1",
+  "version": "0.9.2",
   "author": "ncorrare",
   "summary": "A Puppet Module to install the yubikey PAM module and manage users/keys on a system.",
   "license": "GNU GPL v2.0",

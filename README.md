@@ -1,4 +1,4 @@
-# yubikey
+# ncorrare-yubikey
 
 #### Table of Contents
 
@@ -53,7 +53,7 @@ the arguments for production systems:
 
 ```puppet
 class { '::yubikey::config' :
-  arguments => ''
+  arguments => ['id=16']
   }
   ```
 For other arguments, or using with the Yubico Radius, please check the documentation
@@ -75,8 +75,8 @@ in a given path (~/.yubico/authorized_yubikeys) with the authorization mapping.
 
 The ::yubikey::config class accepts the following variables:
 
-* $arguments: Array. Defaults to ['debug','id=16']. Please note that augeas fails when using a '=' sign.
-  Currently troubleshooting why that happens.
+* $arguments: Array. Defaults to ['debug','id=16']. Arguments are documented
+  in https://developers.yubico.com/yubico-pam/ .
 * $service: Array. Defaults to system-auth & password-auth in RedHat systems 
   and common-auth in Ubuntu systems.
   Depending on your implementation, you might want to have yubikey authentication on a
