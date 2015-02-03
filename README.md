@@ -15,28 +15,26 @@
 
 ## Overview
 
-A one-maybe-two sentence summary of what the module does/what problem it solves.
-This is your 30 second elevator pitch for your module. Consider including
-OS/Puppet version it works with.
+This module installs, configures and assigns Yubikeys in a system.
 
 ## Module Description
 
-If applicable, this section should have a brief description of the technology
-the module integrates with and what that integration enables. This section
-should answer the questions: "What does this module *do*?" and "Why would I use
-it?"
-
-If your module has a range of functionality (installation, configuration,
-management, etc.) this is the time to mention it.
+The module installs the yubico PAM libraries that enable using yubikeys as a
+supported authentication method. Using the default variables it will enable system
+wide yubikey authentication for all users defined using the yubikey::key type.
+It assumes a default PAM configuration, but for complex environments the setup
+can be adjusted.
 
 ## Setup
 
 ### What yubikey affects
 
-* A list of files, packages, services, or operations that the module will alter,
-  impact, or execute on the system it's installed on.
-* This is a great place to stick any warnings.
-* Can be in list or paragraph form.
+* The PAM yubico libraries will be installed from either the distribution
+  repo or Yubico's depending on the Linux Distribution.
+* As default, it will be configured as sufficient authentication before
+  the PAM Unix module. Please review your PAM configuration.
+* As with any PAM changed, it is strongly suggested to test it with a shell
+  open
 
 ### Setup Requirements **OPTIONAL**
 
