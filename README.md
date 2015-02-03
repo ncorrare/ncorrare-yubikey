@@ -77,7 +77,7 @@ The ::yubikey::config class accepts the following variables:
 * $control: Defaults to 'sufficient'. Again, depending on your setup, you may want to add 
   other authentication controls. Refer to the PAM documentation. Module will accept requisite,
   required, sufficient or optional.
-  $before: Defaults to 'pam_unix.so'. Works with most default PAM setups.
+* $before: Defaults to 'pam_unix.so'. Works with most default PAM setups.
 
 
 ## Limitations
