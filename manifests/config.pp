@@ -7,7 +7,7 @@ class yubikey::config (
 ) {
   require ::yubikey::install
   define addAuthYubico {
-    pam { 'Insert Yubikey entry on desired service':
+    pam { "Insert Yubikey entry on $name":
       ensure    => present,
       service   => $name,
       type      => 'auth',
