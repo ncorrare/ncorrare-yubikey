@@ -29,13 +29,13 @@
 # Copyright 2015 Nicolas Corrarello, unless otherwise noted.
 #
 class yubikey (
-  $arguments='id=16 debug',
-  $service,
-  $control='sufficient',
-  $beforemod='pam_unix.so',
+  $arguments  = $yubikey::params::arguments,
+  $service    = $yubikey::params::service,
+  $control    = $yubikey::params::control,
+  $beforemod  = $yubikey::params::beforemod,
 )
   {
-  class { '::yubikey::install' :} ->
+  include yubikey::install
   class { '::yubikey::config':
   arguments   => $arguments,
   service     => $service,
