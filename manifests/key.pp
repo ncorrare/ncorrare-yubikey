@@ -2,7 +2,7 @@
 define yubikey::key ($token,$home,$group) {
   require ::yubikey::config
   file { "${home}/.yubico/" :
-    ensure => directory
+    ensure => directory,
     owner  => $name, 
     group  => $group,
   }
