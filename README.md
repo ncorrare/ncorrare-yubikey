@@ -71,7 +71,8 @@ with the authorization mapping.
 
 The ::yubikey::config class accepts the following variables:
 
-* $arguments: Defaults to 'id=16 debug'
+* $arguments: Defaults to 'debug'. Please note that augeas fails when using a '=' sign.
+  Currently troubleshooting why that happens.
 * $service: Defaults to system-auth in RedHat systems and common-auth in Ubuntu systems.
   Depending on your implementation, you might want to have yubikey authentication on a
   particular service (like sshd) so check your distribution documentation on how PAM
