@@ -9,12 +9,12 @@ class yubikey::config (
   if $::kernel =='Linux' {
       pam { 'Insert Yubikey entry on desired service':
         ensure    => present,
-        service   => $yubikey::config::service,
+        service   => $service,
         type      => 'auth',
-        control   => $yubikey::config::control,
+        control   => $control,
         module    => 'pam_yubico.so',
-        arguments => $yubikey::config::arguments,
-        position  => "before module ${beforemod}",
+        arguments => $arguments,
+        position  => "before *[type=\"auth\" and module=\"${beforemod}\"]",
         }
       
   } else {
