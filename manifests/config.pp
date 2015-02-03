@@ -6,7 +6,7 @@ class yubikey::config (
   $beforemod=$yubikey::params::beforemod
 ) {
   require ::yubikey::install
-  if $::kernel =='Linux' {
+  if $::kernel =='Linux'  {
       pam { 'Insert Yubikey entry on desired service':
         ensure    => present,
         service   => $service,
@@ -16,6 +16,12 @@ class yubikey::config (
         arguments => $arguments,
         position  => "before *[type=\"auth\" and module=\"${beforemod}\"]",
         }
+        #If debug is enabled, create a debug file"
+        if 'debug' in $arguments {
+          file { "/var/run/pam-debug.log" :
+            ensure => present,
+            mode => '0777'
+          }
       
   } else {
     notice ("${::operatingsystem} is not supported")
