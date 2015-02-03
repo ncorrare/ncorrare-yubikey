@@ -11,6 +11,7 @@
     {"name":"puppetlabs/stdlib","version_requirement":">= 1.0.0"},
     {"name":"puppetlabs/apt","version_requirement":">= 1.0.1"},
     {"name":"stahnma/epel","version_requirement":">= 1.0.1"},
+    {"name":"herculesteam/augeasproviders_core","version_requirement":">= 2.0.0"},
     {"name":"herculesteam/augeasproviders_pam","version_requirement":">= 2.0.0"}
   ]
 }
