@@ -6,7 +6,6 @@
 2. [Module Description - What the module does and why it is useful](#module-description)
 3. [Setup - The basics of getting started with yubikey](#setup)
     * [What yubikey affects](#what-yubikey-affects)
-    * [Setup requirements](#setup-requirements)
     * [Beginning with yubikey](#beginning-with-yubikey)
 4. [Usage - Configuration options and additional functionality](#usage)
 5. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
@@ -33,45 +32,60 @@ can be adjusted.
   repo or Yubico's depending on the Linux Distribution.
 * As default, it will be configured as sufficient authentication before
   the PAM Unix module. Please review your PAM configuration.
-* As with any PAM changed, it is strongly suggested to test it with a shell
-  open
-
-### Setup Requirements **OPTIONAL**
-
-If your module requires anything extra before setting up (pluginsync enabled,
-etc.), mention it here.
+* As with any PAM change, it is strongly suggested to test it with a shell
+  open, since it may lock you out of the system.
 
 ### Beginning with yubikey
 
-The very basic steps needed for a user to get the module up and running.
-
-If your most recent release breaks compatibility or requires particular steps
-for upgrading, you may wish to include an additional section here: Upgrading
-(For an example, see http://forge.puppetlabs.com/puppetlabs/firewall).
+To configure a system, begin with adding the class.
+```puppet 
+class { 'yubikey' :}```
 
 ## Usage
 
-Put the classes, types, and resources for customizing, configuring, and doing
-the fancy stuff with your module here.
+The module will install the require bits, and update the PAM configuration to
+have yubikey as a "sufficient" authentication method, before pam_unix.so (i.e.
+before user/password). By default, it will also enable debugging. Consider editing
+the arguments for production systems:
+
+```puppet
+class { '::yubikey::config' :
+  arguments => 'id=16'
+  }
+  ```
+For other arguments, or using with the Yubico Radius, please check the documentation
+on which parameters to use on https://developers.yubico.com/yubico-pam/ .
+
+To configure a user, define a new key:
+yubikey::key { 'username' :
+  token => 'token'
+  }
+Where token is the Yubikey token ID. So far it only accepts a string and not an array.
+This will create a new file in the user's home directory (~/.yubico/authorized_yubikeys)
+with the authorization mapping.
 
 ## Reference
 
-Here, list the classes, types, providers, facts, etc contained in your module.
-This section should include all of the under-the-hood workings of your module so
-people know what the module is touching on their system but don't need to mess
-with things. (We are working on automating this section!)
+The ::yubikey::config class accepts the following variables:
+
+* $arguments: Defaults to 'id=16 debug'
+* $service: Defaults to system-auth in RedHat systems and common-auth in Ubuntu systems.
+  Depending on your implementation, you might want to have yubikey authentication on a
+  particular service (like sshd) so check your distribution documentation on how PAM
+  is configured for your system.
+* $control: Defaults to 'sufficient'. Again, depending on your setup, you may want to add 
+  other authentication controls. Refer to the PAM documentation. Module will accept requisite,
+  required, sufficient or optional.
+  $before: Defaults to 'pam_unix.so'. Works with most default PAM setups.
+
 
 ## Limitations
 
-This is where you list OS compatibility, version compatibility, etc.
+So far this has only been tested in Ubuntu and Centos. Should work in RHEL, Fedora, and Debian.
+Please test it and let me know.
+Also do know that this code is not endorsed by Yubico in any way, so use it at your own risk.
 
 ## Development
 
-Since your module is awesome, other users will want to play with it. Let them
-know what the ground rules for contributing are.
-
-## Release Notes/Contributors/Etc **Optional**
-
-If you aren't using changelog, put your release notes here (though you should
-consider using changelog). You may also add any additional sections you feel are
-necessary or important to include here. Please use the `## ` header.
+Regular rules apply, clone, PR, and I'll have a look. Generally on irc (#puppet and others on Freenode),
+my nick is sgtpepper so feel free to contact me if you have any doubts.
