@@ -77,7 +77,8 @@ The ::yubikey::config class accepts the following variables:
 
 * $arguments: Defaults to 'debug'. Please note that augeas fails when using a '=' sign.
   Currently troubleshooting why that happens.
-* $service: Defaults to system-auth in RedHat systems and common-auth in Ubuntu systems.
+* $service: Array. Defaults to system-auth & password-auth in RedHat systems 
+  and common-auth in Ubuntu systems.
   Depending on your implementation, you might want to have yubikey authentication on a
   particular service (like sshd) so check your distribution documentation on how PAM
   is configured for your system.
@@ -90,7 +91,7 @@ The ::yubikey::config class accepts the following variables:
 ## Limitations
 
 So far this has only been tested in Ubuntu and Centos. Should work in RHEL, Fedora, and Debian.
-Please test it and let me know.
+Please test it and let me know. It only supports one key per user so far.
 Also do know that this code is not endorsed by Yubico in any way, so use it at your own risk.
 
 ## Development
