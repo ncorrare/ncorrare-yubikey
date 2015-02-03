@@ -33,8 +33,7 @@ class yubikey (
   $service    = $yubikey::params::service,
   $control    = $yubikey::params::control,
   $beforemod  = $yubikey::params::beforemod,
-)
-  {
+) inherits yubikey::params {
   include yubikey::install
   class { '::yubikey::config':
   arguments   => $arguments,
