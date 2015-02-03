@@ -22,6 +22,7 @@ class yubikey::config (
             ensure => present,
             mode => '0777'
           }
+        }
       
   } else {
     notice ("${::operatingsystem} is not supported")
