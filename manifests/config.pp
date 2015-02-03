@@ -17,16 +17,15 @@ class yubikey::config (
       position  => "before *[type=\"auth\" and module=\"${beforemod}\"]",
       }
       #If debug is enabled, create a debug file"
-      if 'debug' in $arguments {
-        file { "/var/run/pam-debug.log" :
-          ensure => present,
-          mode => '0777'
-        }
+   }
+   if $::kernel =='Linux'  {
+     if 'debug' in $arguments {
+       file { "/var/run/pam-debug.log" :
+        ensure => present,
+        mode => '0777'
       }
     }
-   if $::kernel =='Linux'  {
-    addAuthYubico { $service: }
-      
+    addAuthYubico { $service: }     
   } else {
     notice ("${::operatingsystem} is not supported")
   }
