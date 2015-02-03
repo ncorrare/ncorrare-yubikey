@@ -1,4 +1,5 @@
 class yubikey::config ($arguments='id=16 debug', $service, $control='sufficient', $before='pam_unix.so') {
+  require ::yubikey::install
   if $::kernel =='Linux' {
     if $::osfamily == 'RedHat' and $::operatingsystem !~ /Fedora|Amazon/ {
       #Insert Red Hat / Centos PAM Logic
