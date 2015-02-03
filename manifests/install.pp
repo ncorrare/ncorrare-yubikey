@@ -1,3 +1,6 @@
+#The following class will install the Yubikey PAM module from the 
+#right repository in each $operatingsystem.
+#Debian and Windows are unsupported so far.
 class yubikey::install {
   if $::kernel =='Linux' {
     if $::osfamily == 'RedHat' and $::operatingsystem !~ /Fedora|Amazon/ {
