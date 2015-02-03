@@ -13,10 +13,8 @@ class yubikey::install {
         ensure => installed,
       }
     } elsif $::osfamily == 'Debian' and $::operatingsystem =~ /Ubuntu/ {
-      require ::apt
-      apt::ppa { 'ppa:yubico/stable' :
-      notify => Exec['apt_update']
-      }->
+      include ::apt
+      apt::ppa { 'ppa:yubico/stable' :}
       package { 'libpam-yubico' :
         ensure => installed
       }
