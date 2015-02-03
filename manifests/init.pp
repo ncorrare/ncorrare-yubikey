@@ -36,10 +36,10 @@ class yubikey (
 ) inherits yubikey::params {
   include yubikey::install
   class { '::yubikey::config':
-  arguments   => $arguments,
-  service     => $service,
-  control     => $control,
-  beforemod   => $beforemod,
+  arguments => $arguments,
+  service   => $service,
+  control   => $control,
+  beforemod => $beforemod,
   }
 
 

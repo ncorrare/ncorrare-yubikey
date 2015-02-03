@@ -6,8 +6,9 @@ class yubikey::config (
   $beforemod=$yubikey::params::beforemod,
 ) {
   require ::yubikey::install
+  # Define a type to iterate through the $service array
   define addAuthYubico {
-    pam { "Insert Yubikey entry on $name as $yubikey::config::control":
+    pam { "Insert Yubikey entry on ${name} as ${yubikey::config::control}":
       ensure    => present,
       service   => $name,
       type      => 'auth',
@@ -16,16 +17,15 @@ class yubikey::config (
       arguments => $yubikey::config::arguments,
       position  => "before *[type=\"auth\" and module=\"${yubikey::config::beforemod}\"]",
       }
-      #If debug is enabled, create a debug file"
-   }
-   if $::kernel =='Linux' and ($::osfamily == 'RedHat' or $::osfamily == 'Debian') {
-     if 'debug' in $arguments {
-       file { "/var/run/pam-debug.log" :
+      }
+  if $::kernel =='Linux' and ($::osfamily == 'RedHat' or $::osfamily == 'Debian') {
+    if 'debug' in $arguments {
+      file { '/var/run/pam-debug.log' :
         ensure => present,
-        mode => '0777'
+        mode   => '0777'
       }
     }
-    addAuthYubico { $service: } 
+    addAuthYubico { $service: }
   } else {
     notice ("${::operatingsystem} is not supported")
   }
