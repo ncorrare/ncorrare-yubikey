@@ -4,13 +4,12 @@ $control='sufficient', $before='pam_unix.so') {
   require ::yubikey::install
   if $::kernel =='Linux' {
     if $::osfamily == 'RedHat' and $::operatingsystem !~ /Fedora|Amazon/ {
-      #Insert Red Hat / Centos PAM Logic
       require ::pam
       #If we don't specify a service, default to system-auth
       if !($service) {
         $service = 'system-auth'
       }
-      pam { 'Insert Yubikey entry on system-auth':
+      pam { 'Insert Yubikey entry on desired service':
         ensure    => present,
         service   => $yubikey::config::service,
         type      => 'auth',
@@ -21,9 +20,36 @@ $control='sufficient', $before='pam_unix.so') {
         }
       
     } elsif $::osfamily == 'RedHat' and $::operatingsystem =~ /Fedora/ {
-      #Insert Fedora Logic
+      require ::pam
+      #If we don't specify a service, default to system-auth
+      if !($service) {
+        $service = 'system-auth'
+      }
+      pam { 'Insert Yubikey entry on desired service':
+        ensure    => present,
+        service   => $yubikey::config::service,
+        type      => 'auth',
+        control   => $yubikey::config::control,
+        module    => 'pam_yubico.so',
+        arguments => $yubikey::config::arguments,
+        position  => "before module ${before}",
+        }
+ 
     } elsif $::osfamily == 'Debian' and $::operatingsystem =~ /Ubuntu/ {
-      #Insert Ubuntu Logic
+      require ::pam
+      #If we don't specify a service, default to common-auth
+      if !($service) {
+        $service = 'common-auth'
+      }
+      pam { 'Insert Yubikey entry on desired service':
+        ensure    => present,
+        service   => $yubikey::config::service,
+        type      => 'auth',
+        control   => $yubikey::config::control,
+        module    => 'pam_yubico.so',
+        arguments => $yubikey::config::arguments,
+        position  => "before module ${before}",
+        }
     } else {
       notice ("${::operatingsystem} is not supported")
     }
