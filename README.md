@@ -39,7 +39,8 @@ can be adjusted.
 
 To configure a system, begin with adding the class.
 ```puppet 
-class { 'yubikey' :}```
+class { 'yubikey' :}
+```
 
 ## Usage
 
