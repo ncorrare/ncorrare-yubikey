@@ -35,6 +35,10 @@ class yubikey (
   $beforemod  = $yubikey::params::beforemod,
 ) inherits yubikey::params {
   include yubikey::install
+  validate_re($control, $yubikey::params::validcontrol)
+  validate_array($arguments)
+  validate_array($service)
+  validate_string($beforemod)
   class { '::yubikey::config':
   arguments => $arguments,
   service   => $service,
