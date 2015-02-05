@@ -82,11 +82,15 @@ The ::yubikey::config class accepts the following variables:
   Depending on your implementation, you might want to have yubikey authentication on a
   particular service (like sshd) so check your distribution documentation on how PAM
   is configured for your system.
-* $control: Defaults to 'sufficient'. Again, depending on your setup, you may want to add 
+* $control: String. Defaults to 'sufficient'. Again, depending on your setup, you may want to add 
   other authentication controls. Refer to the PAM documentation. Module will accept requisite,
   required, sufficient or optional.
-* $beforemod: Defaults to 'pam_unix.so'. Works with most default PAM setups.
+* $beforemod: String. Defaults to 'pam_unix.so'. Works with most default PAM setups.
 
+The ::yubikey::key type accepts the following parameters:
+* $token: String (12 char). Your Yubikey ID.
+* $home: String. User home directory.
+* $gid: String. User's primary group.
 
 ## Limitations
 
