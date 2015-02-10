@@ -3,7 +3,8 @@ define yubikey::key ($token,$home,$group) {
   require ::yubikey::config
   validate_string($home)
   validate_string($group)
-  validate_re($token,'^[a-z]{12}$')
+  validate_array($token)
+  $tokens=join($token,':')
   file { "${home}/.yubico/" :
     ensure => directory,
     owner  => $name,
@@ -13,7 +14,7 @@ define yubikey::key ($token,$home,$group) {
     ensure  => 'present',
     owner   => $name,
     group   => $group,
-    content => "${name}:${token}",
+    content => "${name}:${tokens}",
     require => File["${home}/.yubico/"]
   }
 }

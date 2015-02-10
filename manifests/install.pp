@@ -3,7 +3,7 @@
 #Debian and Windows are unsupported so far.
 class yubikey::install (
   $pkgname    = $yubikey::params::pkgname,
-  $managedeps = $yubikey::params::managedeps,
+  $managedeps = str2bool($yubikey::params::managedeps),
 ) {
   validate_string($pkgname)
   validate_bool($managedeps)

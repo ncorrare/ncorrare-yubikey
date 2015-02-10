@@ -62,7 +62,7 @@ on which parameters to use on https://developers.yubico.com/yubico-pam/ .
 To configure a user, define a new key:
 ```puppet
 yubikey::key { 'username' :
-  token   => 'token'
+  token   => 'array of tokens' #Since version 1.0.0
   homedir => 'homedir'
   group   => 'group'
   }
@@ -94,14 +94,14 @@ The ::yubikey::config class accepts the following variables:
 * $beforemod: String. Defaults to 'pam_unix.so'. Works with most default PAM setups.
 
 The ::yubikey::key type accepts the following parameters:
-* $token: String (12 char). Your Yubikey ID.
+* $token: Array of 12 char strings (Yes, it will validate that!). Be careful!, this used to be a string! of your Yubikey ID.
 * $home: String. User home directory.
 * $gid: String. User's primary group.
 
 ## Limitations
 
 So far this has only been tested in Ubuntu and Centos. Should work in RHEL, Fedora, and Debian.
-Please test it and let me know. It only supports one key per user so far.
+Please test it and let me know. 
 Also do know that this code is not endorsed by Yubico in any way, so use it at your own risk.
 
 ## Development

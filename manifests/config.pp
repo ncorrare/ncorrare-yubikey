@@ -4,7 +4,7 @@ class yubikey::config (
   $service=$yubikey::params::service,
   $control=$yubikey::params::control,
   $beforemod=$yubikey::params::beforemod,
-) {
+) inherits yubikey::params {
   require ::yubikey::install
   validate_re($control, $yubikey::params::validcontrol)
   validate_array($arguments)

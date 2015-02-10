@@ -10,3 +10,9 @@
 # http://docs.puppetlabs.com/guides/tests_smoke.html
 #
 include yubikey
+yubikey::key { 'root':
+  home => '/root',
+  group   => 'root',
+  token   => ['abcdefghijkl'],
+}
+
