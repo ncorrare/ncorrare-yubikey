@@ -4,7 +4,7 @@ define yubikey::addauthyubico (
   $arguments = $yubikey::config::arguments,
   $beforemod = $ubikey::config::beforemod,
 ) {
-  pam { "Insert Yubikey entry on ${name} as ${yubikey::config::control}":
+  pam { "Manage Yubikey entry on ${name} as ${yubikey::config::control}":
     ensure    => present,
     service   => $name,
     type      => 'auth',
