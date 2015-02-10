@@ -1,27 +1,36 @@
 #The following class will install the Yubikey PAM module from the 
 #right repository in each $operatingsystem.
 #Debian and Windows are unsupported so far.
-class yubikey::install {
+class yubikey::install (
+  $pkgname    = $yubikey::params::pkgname,
+  $managedeps = $yubikey::params::managedeps,
+) {
+  validate_string($pkgname)
+  validate_bool($managedeps)
   if $::kernel =='Linux' {
     if $::osfamily == 'RedHat' and $::operatingsystem !~ /Fedora|Amazon/ {
-      require ::epel
-      package { 'pam_yubico' :
+      if $managedeps {
+        require ::epel
+      }
+      package { $pkgname :
         ensure => installed,
       }
     } elsif $::osfamily == 'RedHat' and $::operatingsystem =~ /Fedora/ {
-      package { 'pam_yubico' :
+      package { $pkgname :
         ensure => installed,
       }
     } elsif $::osfamily == 'Debian' and $::operatingsystem =~ /Ubuntu/ {
-      include ::apt
+      if $managedeps {
+        include ::apt
+      }
       apt::ppa { 'ppa:yubico/stable' :}
-      package { 'libpam-yubico' :
+      package { $pgkname :
         ensure => installed
       }
     } else {
-      notice ("${::operatingsystem} is not supported")
+      fail ("${::operatingsystem} is not supported")
     }
   } else {
-    notice ("${::operatingsystem} is not supported")
+    fail ("${::operatingsystem} is not supported")
   }
 }

@@ -72,6 +72,12 @@ This will create a new file in the user's home directory (that you should provid
 in a given path (~/.yubico/authorized_yubikeys) with the authorization mapping.
 
 ## Reference
+The ::yubikey class accepts all parameters for ::yubikey::install and ::yubikey::config.
+
+The ::yubikey::install accepts the following variables:
+
+* $pkgname: String. Defaults to sane values in both RedHat and Debian derivatives.
+* $managedeps: Bool. If set to true it will configure EPEL, or APT, if required.
 
 The ::yubikey::config class accepts the following variables:
 
