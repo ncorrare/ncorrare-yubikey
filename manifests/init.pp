@@ -60,7 +60,7 @@ class yubikey (
   validate_string($pkgname)
   validate_bool($managedeps)
   class { '::yubikey::install':
-    pgkname    => $pkgname,
+    pkgname    => $pkgname,
     managedeps => $managedeps,
   }
   class { '::yubikey::config':

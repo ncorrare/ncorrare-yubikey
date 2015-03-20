@@ -2,8 +2,8 @@
 #right repository in each $operatingsystem.
 #Debian and Windows are unsupported so far.
 class yubikey::install (
-  $pkgname    = $yubikey::params::pkgname,
-  $managedeps = str2bool($yubikey::params::managedeps),
+  $pkgname,
+  $managedeps,
 ) {
   validate_string($pkgname)
   validate_bool($managedeps)
@@ -24,7 +24,7 @@ class yubikey::install (
         include ::apt
       }
       apt::ppa { 'ppa:yubico/stable' :}
-      package { $pgkname :
+      package { $pkgname :
         ensure => installed
       }
     } else {
