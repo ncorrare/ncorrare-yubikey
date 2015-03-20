@@ -11,7 +11,29 @@ describe 'yubikey', :type => :class do
 			  'ensure'=>'installed',
 			  'name'  =>'pam_yubico',
 			})
-			#should contain_file('/etc/pam.d/system-auth').with_content(/pam_yubico/)
+			should contain_file('/var/run/pam-debug.log').with({
+				'ensure'=>'present',
+			})
+			#should contain_class('epel') 
+		}
+	end
+	describe 'when called with no parameters on Ubuntu' do
+		let (:facts) {{
+			:osfamily => 'Debian',
+			:kernel => 'Linux',
+			:operatingsystem => 'Ubuntu',
+			:lsbdistid => 'Ubuntu',
+			:lsbdistcodename => 'precise',
+		}}
+		it {
+			should contain_package('libpam-yubico').with({
+			  'ensure'=>'installed',
+			  'name'  =>'libpam-yubico',
+			})
+			should contain_file('/var/run/pam-debug.log').with({
+				'ensure'=>'present',
+			})
+			should contain_class('apt') 
 		}
 	end
 end

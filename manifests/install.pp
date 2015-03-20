@@ -10,10 +10,11 @@ class yubikey::install (
   if $::kernel =='Linux' {
     if $::osfamily == 'RedHat' and $::operatingsystem !~ /Fedora|Amazon/ {
       if $managedeps {
-        require ::epel
+        include ::epel
       }
       package { $pkgname :
         ensure => installed,
+        require => Class['epel'],
       }
     } elsif $::osfamily == 'RedHat' and $::operatingsystem =~ /Fedora/ {
       package { $pkgname :
@@ -25,7 +26,8 @@ class yubikey::install (
       }
       apt::ppa { 'ppa:yubico/stable' :}
       package { $pkgname :
-        ensure => installed
+        ensure => installed,
+        require => Apt::Ppa['ppa:pubico/stable'],
       }
     } else {
       fail ("${::operatingsystem} is not supported")
