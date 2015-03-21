@@ -1,6 +1,5 @@
 #Defining the type yubikey:key to allow users to authenticate with Yubikeys.
 define yubikey::key ($token,$home,$group) {
-  require ::yubikey::config
   validate_string($home)
   validate_string($group)
   validate_array($token)
