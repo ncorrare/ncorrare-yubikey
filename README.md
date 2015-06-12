@@ -1,4 +1,6 @@
 # ncorrare-yubikey
+[![Coverage Status](https://coveralls.io/repos/ncorrare/ncorrare-yubikey/badge.png?branch=master)](https://coveralls.io/r/ncorrare/ncorrare-yubikey)
+[![Build Status](https://travis-ci.org/ncorrare/ncorrare-yubikey.svg?branch=master)](https://travis-ci.org/ncorrare/ncorrare-yubikey)
 
 #### Table of Contents
 
@@ -110,5 +112,3 @@ Regular rules apply, clone, PR, and I'll have a look. Generally on irc (#puppet 
 my nick is sgtpepper so feel free to contact me if you have any doubts.
 
 
-Testing Status
-[![Build Status](https://travis-ci.org/ncorrare/ncorrare-yubikey.svg?branch=master)](https://travis-ci.org/ncorrare/ncorrare-yubikey)
