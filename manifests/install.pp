@@ -13,7 +13,7 @@ class yubikey::install (
         include ::epel
       }
       package { $pkgname :
-        ensure => installed,
+        ensure  => installed,
         require => Class['epel'],
       }
     } elsif $::osfamily == 'RedHat' and $::operatingsystem =~ /Fedora/ {
@@ -26,7 +26,7 @@ class yubikey::install (
       }
       apt::ppa { 'ppa:yubico/stable' :}
       package { $pkgname :
-        ensure => installed,
+        ensure  => installed,
         require => Apt::Ppa['ppa:pubico/stable'],
       }
     } else {
