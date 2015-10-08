@@ -111,5 +111,3 @@ Also do know that this code is not endorsed by Yubico in any way, so use it at y
 
 Regular rules apply, clone, PR, and I'll have a look. Generally on irc (#puppet and others on Freenode),
 my nick is sgtpepper so feel free to contact me if you have any doubts.
-
-Testd in Puppet User Group 
