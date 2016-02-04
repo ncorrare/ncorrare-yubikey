@@ -27,7 +27,7 @@ class yubikey::install (
       apt::ppa { 'ppa:yubico/stable' :}
       package { $pkgname :
         ensure  => installed,
-        require => Apt::Ppa['ppa:pubico/stable'],
+        require => Apt::Ppa['ppa:yubico/stable'],
       }
     } else {
       fail ("${::operatingsystem} is not supported")
