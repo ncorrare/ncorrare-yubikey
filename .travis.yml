@@ -1,15 +1,27 @@
 ---
 language: ruby
 bundler_args: --without system_tests
-script: "bundle exec rake validate && bundle exec rake lint && bundle exec rake spec SPEC_OPTS='--format documentation'"
+branches:
+  only: 
+    - master
+script: "bundle exec rake validate && bundle exec rake lint && bundle exec rake spec SPEC_OPTS='--format documentation' && bundle exec rake metadata_lint"
+env:
+  global:
+    - secure: "SpHLsAC91MtQrSShtuj1t1KEmTE70F0mb5EijJN8Rl1Rfu642uz9Tc7B9cLt/ZxqTRBNIwJr60VxAhhQ+H/0Zvd0USmhYddt8A4LESDaX2wpj2y8fhYFVht+thz3yteCvnaCTnRA0vDehyTi9pZY40djX8hXn/j/onyJKGIaS7Y="
+    - secure: "gNEIEAAvowFSpPVydKc/ikGbxaXc+8JsoGG84eZQEiiy2l34S/8tpYy7UjUbk76NJrRP95sT27Jjeu3uwVN06E2D5vZUuJ9Cq9I22IK2hjCJ7kzEdASdR/p3Q/xWIbzE2qnGFwI2W2wmfwt9BWLhsynclKefByqNrY9lqn5MNT8="
+    - secure: "JFVKtJRUJG22dMPGBX7DNONy/wWtVbQXstzIrXiMGp6DrsDR3F/LWzIObuEpWvGHV2jZdQQh0nmfDD29r3aoq5NZc4yHi3gwuWp+aEHQXvP5bu7Eif9GSY6ocCw1MbPr7Pxrx22P+tTIVW8/Agff0gk6+dt5I5GK7jrwDMPF9DU="
+    - BLACKSMITH_FORGE_URL=https://forgeapi.puppetlabs.com
 matrix:
-  fast_finish: true
   include:
-  - rvm: 1.9.3
-    env: PUPPET_GEM_VERSION="~> 3.0"
-  - rvm: 2.0.0
-    env: PUPPET_GEM_VERSION="~> 3.0"
-  - rvm: 2.0.0
-    env: PUPPET_GEM_VERSION="~> 4.0"
+  - rvm: 2.1.8
+    env: PUPPET_VERSION="~> 4.4.0"
+  - rvm: 2.1.8
+    env: PUPPET_VERSION="~> 4.3.0" FACTER_VERSION="~> 2.4.0"
+  - rvm: 2.1.6
+    env: PUPPET_VERSION="~> 4.2.0" FACTER_VERSION="~> 2.4.0"
 notifications:
   email: nicolas@corrarello.com
+after_success:
+  - "curl -o /tmp/travis-automerge https://raw.githubusercontent.com/ncorrare/travis-scripts/master/aftersuccessforge.sh"
+  - "chmod a+x /tmp/travis-automerge"
+  - "/tmp/travis-automerge"
