@@ -1,29 +1,56 @@
 {
   "name": "ncorrare-yubikey",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "author": "ncorrare",
   "summary": "A Puppet Module to install the yubikey PAM module and manage users/keys on a system.",
   "license": "GPL-2.0",
   "project_page": "https://github.com/ncorrare/ncorrare-yubikey/wiki",
   "source": "https://github.com/ncorrare/ncorrare-yubikey",
   "issues_url": "https://github.com/ncorrare/ncorrare-yubikey/issues",
-  "tags": ["yubikey", "otp", "two-factor", "authentication", "pam"],
+  "tags": [
+    "yubikey",
+    "otp",
+    "two-factor",
+    "authentication",
+    "pam"
+  ],
   "operatingsystem_support": [
-   {
-      "operatingsystem":"RedHat",
-      "operatingsystemrelease":[ "6.0", "7.0" ]
-   },
-   {
+    {
+      "operatingsystem": "RedHat",
+      "operatingsystemrelease": [
+        "6.0",
+        "7.0"
+      ]
+    },
+    {
       "operatingsystem": "Ubuntu",
-      "operatingsystemrelease": [ "12.04", "12.10", "14.04" ]
+      "operatingsystemrelease": [
+        "12.04",
+        "12.10",
+        "14.04"
+      ]
     }
-   ],
+  ],
   "dependencies": [
-    {"name":"puppetlabs/stdlib","version_requirement":"1.x"},
-    {"name":"puppetlabs/apt","version_requirement":"1.x"},
-    {"name":"stahnma/epel","version_requirement":"1.x"},
-    {"name":"herculesteam/augeasproviders_core","version_requirement":"2.x"},
-    {"name":"herculesteam/augeasproviders_pam","version_requirement":"2.x"}
+    {
+      "name": "puppetlabs/stdlib",
+      "version_requirement": "1.x"
+    },
+    {
+      "name": "puppetlabs/apt",
+      "version_requirement": "1.x"
+    },
+    {
+      "name": "stahnma/epel",
+      "version_requirement": "1.x"
+    },
+    {
+      "name": "herculesteam/augeasproviders_core",
+      "version_requirement": "2.x"
+    },
+    {
+      "name": "herculesteam/augeasproviders_pam",
+      "version_requirement": "2.x"
+    }
   ]
 }
-
