@@ -1,0 +1,13 @@
+HOSTS:
+  centos-agent.localdomain:
+    roles:
+    - "agent"
+    type: aio
+    platform: "el-7-x86_64"
+    docker_cmd: '["/sbin/init"]'
+    image: "centos"
+    hypervisor: "docker"
+    docker_preserve_image: true
+CONFIG:
+  log_level: "trace"
+  masterless: true

@@ -13,3 +13,6 @@ gem 'metadata-json-lint'
 gem 'coveralls', require: false
 #Tools to deploy automatically to the Puppet Forge
 gem 'puppet-blacksmith'
+gem 'beaker'
+gem 'beaker-rspec'
+gem "beaker-puppet_install_helper"
