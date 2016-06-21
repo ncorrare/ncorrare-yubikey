@@ -18,4 +18,9 @@ task :validate do
   end
 end
 
+desc "Run acceptance tests"
+RSpec::Core::RakeTask.new(:acceptance) do |t|
+	  t.pattern = 'spec/acceptance'
+end
+
 task :default => [:validate, :spec, :lint, :metadata_lint]
