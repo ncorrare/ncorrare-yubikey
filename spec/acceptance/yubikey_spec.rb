@@ -13,4 +13,7 @@ describe 'yubikey_class' do
     describe package('pam_yubico') do
       it { should be_installed }
     end
+    describe file('/etc/pam.d/system-auth') do
+      its(:content) {should match /pam_yubico.so/ }
+    end
 end
