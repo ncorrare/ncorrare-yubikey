@@ -1,9 +1,12 @@
 language: ruby
 bundler_args: "--without system_tests"
+sudo: required
+services:
+  - docker
 branches:
   only:
   - master
-script: bundle exec rake validate && bundle exec rake lint && bundle exec rake spec
+script: bundle exec rake validate && bundle exec rake lint && bundle exec rake spec && sudo bundle exec rake acceptance
   SPEC_OPTS='--format documentation' && bundle exec rake metadata_lint
 env:
   global:
