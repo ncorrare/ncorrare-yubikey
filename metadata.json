@@ -31,6 +31,12 @@
       ]
     }
   ],
+  "requirements": [
+    {
+      "name": "pe",
+      "version_requirement": " >=2015.2.0 < 2016.3.0"
+    }
+  ],
   "dependencies": [
     {
       "name": "puppetlabs/stdlib",
