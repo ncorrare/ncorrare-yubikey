@@ -13,3 +13,5 @@ gem 'metadata-json-lint'
 gem 'coveralls', require: false
 #Tools to deploy automatically to the Puppet Forge
 gem 'puppet-blacksmith'
+#Added CI Reporting
+gem "ci_reporter_rspec"
