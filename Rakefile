@@ -5,6 +5,7 @@ require 'puppet_blacksmith/rake_tasks'
 require 'ci/reporter/rake/rspec'
 PuppetLint.configuration.send('disable_80chars')
 PuppetLint.configuration.ignore_paths = ["spec/**/*.pp", "pkg/**/*.pp"]
+PuppetLint.configuration.log_format = '%{path}:%{line}:%{check}:%{KIND}:%{message}'
 
 desc "Validate manifests, templates, and ruby files"
 task :validate do
