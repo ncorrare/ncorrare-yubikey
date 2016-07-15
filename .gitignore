@@ -19,3 +19,8 @@ tags
 
 # testing
 spec/fixtures
+results
+pkg
+log
+junit
+coverage
