@@ -11,10 +11,14 @@ class yubikey::install (
     if $::osfamily == 'RedHat' and $::operatingsystem !~ /Fedora|Amazon/ {
       if $managedeps {
         include ::epel
-      }
-      package { $pkgname :
-        ensure  => installed,
-        require => Class['epel'],
+        package { $pkgname :
+          ensure  => installed,
+          require => Class['epel'],
+        }
+      } else {
+        package { $pkgname :
+          ensure  => installed,
+        }
       }
     } elsif $::osfamily == 'RedHat' and $::operatingsystem =~ /Fedora/ {
       package { $pkgname :
